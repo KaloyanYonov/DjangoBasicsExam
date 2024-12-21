@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Delete Trip - Travelers Hub{% endblock %}
+{% block content %}
+<section id="edit">
+    <div class="form">
+        <h2>Delete Trip</h2>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

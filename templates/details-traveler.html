@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Traveler Profile - Travelers Hub{% endblock %}
+{% block content %}
+<section id="details">
+    <div id="details-wrapper">
+        <h2>Traveler's Profile</h2>
+        <img src="{% static 'images/default-traveler.png' %}" alt="profile image">
+
+        <p id="details-title">{{ traveler.nickname }}</p>
+        <p id="nutrition">
+            <span>Email:</span> {{ traveler.email }}
+            <span>Country:</span> {{ traveler.country }}
+        </p>
+
+        {% if traveler.about_me %}
+        <p><span>About me:</span> {{ traveler.about_me }}</p>
+        {% endif %}
+
+        {% if traveler.trips.exists %}
+        <p><span>Shared Trips:</span></p>
+        <ul>
+            {% for trip in traveler.trips.all%}
+                <li>{{ trip.destination }}: {{ trip.duration }} day/s, started on: {{ trip.start_date|date:"D d M Y" }}</li>
+            {% empty %}
+                <li>No trips available.</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No shared trips available.</p>
+        {% endif %}
+        <div id="action-buttons">
+            <a href="{% url 'edit_traveler' %}" id="edit-btn">Edit</a>
+            <a href="{% url 'delete_traveler' %}" id="delete-btn">Delete</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

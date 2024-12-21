@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Share a Trip - Travelers Hub{% endblock %}
+{% block content %}
+<section id="create">
+    <div class="form">
+        <h2>Share a New Trip</h2>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Share</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
